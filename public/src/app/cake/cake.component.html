@@ -1,0 +1,18 @@
+<hr>
+<div class="thiscake">
+    <h3 class="text-center">Baked by {{this_cake.baker_name}}</h3>
+    <br>
+    <div class="row">
+        <div class="col-sm">
+            <img [src]="this_cake.image_url" alt="#" class="thiscakeimage">
+        </div>
+        <div class="col-sm">
+            <h4>Average rating: {{average}}  stars</h4>
+            <br>
+            <div *ngFor="let comment of this_cake.rates">
+                <p>Comment: {{ comment.comment }}</p>
+                <p>Rate: {{comment.stars}}</p>
+            </div>
+        </div>
+    </div>
+</div>

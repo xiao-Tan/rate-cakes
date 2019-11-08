@@ -1,0 +1,31 @@
+.nav{
+    display: inline-block;
+    vertical-align: top;
+}
+button{
+    margin-right:10px;
+}
+.create_form{
+    padding-left:100px;
+    padding-right:100px;
+}
+.error{
+    font-size: 13px;
+    color:red;
+}
+.one_image{
+    width:200px;
+    margin-bottom: 20px;
+}
+.rate_form{
+    padding-right: 50px;
+}
+.allcakes{
+    height:500px;
+    overflow:scroll;
+    width:600px;
+    border:2px solid rgb(42, 201, 193);
+    padding-left: 20px;
+    padding-top: 10px;
+    margin-right:20px;
+}

@@ -1,0 +1,83 @@
+<div class="container">
+  <h1 class="text-center">Welcome to {{title}} Factory</h1>
+</div>
+
+<!-- cake form -->
+<div class="row">
+  <div class="col-sm">
+    <p class="text-center"><button (click)="showForm()" class="btn btn-outline-info">Add a new cake!</button></p>
+    <div *ngIf="show_form" class="create_form">
+      <h4>Submit a Cake to be rated</h4>
+      <hr>
+      <form (submit)="onSubmit()">
+        <p>{{one_cake | json}}</p>
+        <div class="form-group">
+          <label for="baker_name">Baker Name</label>
+          <input type="text" class="form-control" id="baker_name" [(ngModel)]="one_cake.baker_name" name="baker_name">
+        </div>
+        <div class="form-group">
+          <label for="image_url">Image URL</label>
+          <input type="text" class="form-control" id="image_url" [(ngModel)]="one_cake.image_url" name="image_url">
+        </div>
+        <div *ngIf="validation_error.length > 0">
+          <ul *ngFor="let error of validation_error">
+            <li class="error">{{error}}</li>
+          </ul>
+        </div>
+        <p class="text-center"><button class="btn btn-outline-info" type="submit">Create Cake</button></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-sm">
+    <p class="text-center"><button (click)="showAllCakes()" class="btn btn-outline-info">Click me and get all
+        Cake!</button></p>
+    <div *ngIf="show_allCakes" class="allcakes">
+      <h4>All Cakes!</h4>
+      <div class="row" *ngFor="let cake of allCakes">
+
+        <!-- cake image -->
+        <div class="col-sm">
+          <img [src]="cake.image_url" alt="#" class="one_image" (click)="showOneCake(cake['_id'])">
+        </div>
+
+        <!-- rate form -->
+        <div class="col-sm">
+          <form (submit)="onSubmitRate(cake._id)" class="rate_form">
+            <p>{{one_rate | json}}</p>
+            <div class="form-group">
+              <label for="stars">Select stars</label>
+              <select class="form-control" id="stars" [(ngModel)]="one_rate.stars" name="stars">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="comment">Comment</label>
+              <textarea type="text" class="form-control" id="comment" [(ngModel)]="one_rate.comment"
+                name="comment"></textarea>
+            </div>
+            <div *ngIf="rate_error[cake._id]">
+              <ul *ngFor="let error of rate_error[cake._id]">
+                <li class="error">{{error}}</li>
+              </ul>
+            </div>
+            <p class="text-center"><button class="btn btn-outline-info" type="submit">Add Rate</button></p>
+          </form>
+
+          <!-- <app-cake *ngIf="show_one" [this_cake]='cake'></app-cake> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- child component -->
+<app-cake *ngIf="show_one" [this_cake]='this_cake'></app-cake>
+
+
+<router-outlet></router-outlet>
