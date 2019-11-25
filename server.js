@@ -61,6 +61,12 @@ app.get('/cake/:id', (request, response) => {
         .catch(err => response.json(err))
 })
 
+app.get('/cakes/:name', (request, response) => {
+    Cake.find({ baker_name: request.params.name })
+        .then(data => response.json({ message: "success", result: data }))
+        .catch(err => response.json(err))
+})
+
 app.post('/cake', (request, response) => {
     const one_cake = new Cake(request.body);
     one_cake.save()

@@ -29,3 +29,14 @@ button{
     padding-top: 10px;
     margin-right:20px;
 }
+.select_baker{
+    padding-left:200px;
+    padding-right:200px;
+}
+.one_image_baker{
+    display: inline-block;
+    vertical-align: top;
+    width:300px;
+    height: 400px;
+    margin-left:50px;
+}

@@ -6,7 +6,7 @@ import { HttpService } from '../http.service';
   templateUrl: './cake.component.html',
   styleUrls: ['./cake.component.css']
 })
-export class CakeComponent implements OnInit, OnChanges {
+export class CakeComponent implements OnInit{
   @Input() this_cake: any;
   average: any;
 
@@ -19,18 +19,19 @@ export class CakeComponent implements OnInit, OnChanges {
     this.getAverage();
   }
 
-  ngOnChanges(changes: SimpleChanges){
-    if(typeof changes['this_cake'] !== "undefined"){
-      var change = changes['this_cake'];
-      if(!change.isFirstChange()){
-        this.getAverage();
-      }
-    }
-  }
+  // ngOnChanges(changes: SimpleChanges){
+  //   if(typeof changes['this_cake'] !== "undefined"){
+  //     var change = changes['this_cake'];
+  //     if(!change.isFirstChange()){
+  //       this.getAverage();
+  //     }
+  //   }
+  // }
 
   getAverage(){
     if(this.this_cake['rates'].length == 0){
       this.average = "N/A"
+      // return "N/A"
     }
     else{
       var sum = 0;
@@ -38,6 +39,7 @@ export class CakeComponent implements OnInit, OnChanges {
         sum = sum + this.this_cake['rates'][i]['stars'];
       }
       this.average = (sum / this.this_cake['rates'].length).toFixed(1);
+      // return (sum / this.this_cake['rates'].length).toFixed(1);
     } 
     return this.average; 
   }
